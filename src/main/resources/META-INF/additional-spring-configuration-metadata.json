@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "validator.url",
+    "type": "java.lang.String",
+    "description": "A description for 'validator.url'"
+  },
+  {
+    "name": "validator.username",
+    "type": "java.lang.String",
+    "description": "A description for 'validator.username'"
+  },
+  {
+    "name": "validator.password",
+    "type": "java.lang.String",
+    "description": "A description for 'validator.password'"
+  }
+]}

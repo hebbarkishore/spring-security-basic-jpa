@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} [%t] %-5level %logger{1} - %msg%n</Property>
+        <Property name="APP_LOG_ROOT">src/main/resources</Property>
+    </Properties>
+    <Appenders>
+        <Console name="ConsoleLog" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+  
+        <RollingFile name="appLog"
+            fileName="${APP_LOG_ROOT}/jpa_data_example.log"
+            filePattern="${APP_LOG_ROOT}/jpa_data_example-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+			    <TimeBasedTriggeringPolicy interval="1" />
+			    <SizeBasedTriggeringPolicy size="5MB" />
+			</Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+ 
+    </Appenders>
+    <Loggers>
+ 
+        <Logger name="com.example.programs" level="debug" additivity="false">
+            <AppenderRef ref="appLog" />
+            <!-- <AppenderRef ref="ConsoleLog" /> -->
+        </Logger>
+        
+        
+        <Logger name="org.springframework.boot" level="warn" additivity="false">
+            <AppenderRef ref="appLog"/>
+        </Logger>
+        
+        <Logger name="org.springframework.boot.SpringApplication" level="info" additivity="false">
+            <AppenderRef ref="appLog"/>
+        </Logger>
+        
+        <Logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" additivity="false">
+        	<AppenderRef ref="appLog"/>
+		</Logger>
+ 
+        <Root level="warn">
+        	<AppenderRef ref="appLog" />
+        	<!-- <AppenderRef ref="ConsoleLog" /> -->
+        </Root>
+    </Loggers>
+</Configuration>
